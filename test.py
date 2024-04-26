@@ -44,25 +44,26 @@
 # Hint: If you try to access a value from a dictionary that does
 # not exist, a KeyError will be raised.
 
-
-def rabbit_hole(my_dict: dict, my_input: str):
-    tried = []
+def rabbit_hole(my_dict, input):
+    accessed = []
     try:
-        def next(key):
-            if key in tried:
+        def find(key):
+            if key in accessed:
                 return False
-            tried.append(key)
+            accessed.append(key)
 
             if key not in my_dict:
                 return key
             else:
                 value = my_dict[key]
-                return next(value)
+                return find(value)
 
-        return next(key=my_input)
+        return find(input)
 
     except KeyError:
-        return my_dict[my_input]
+        pass
+
+
 
 # Below are some lines of code that will test your function.
 # You can change the value of the variable(s) to test your
